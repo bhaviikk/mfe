@@ -16,22 +16,26 @@ export const View = (props: Props) => {
   return (
     <div>
       <table>
-        <tr>
-          <th>Field</th>
-          <th>Value</th>
-        </tr>
-        <tr>
-          <td>Id</td>
-          <td>{data.id || "-"}</td>
-        </tr>
-        <tr>
-          <td>Height (in cms)</td>
-          <td>{data.height || "-"}</td>
-        </tr>
-        <tr>
-          <td>Weight (in kgs)</td>
-          <td>{data.weight || "-"}</td>
-        </tr>
+        <thead>
+          <tr>
+            <th>Field</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Id</td>
+            <td>{data?.id || "-"}</td>
+          </tr>
+          <tr>
+            <td>Height (in cms)</td>
+            <td>{data?.height || "-"}</td>
+          </tr>
+          <tr>
+            <td>Weight (in kgs)</td>
+            <td>{data?.weight || "-"}</td>
+          </tr>
+        </tbody>
       </table>
     </div>
   );

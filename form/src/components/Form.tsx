@@ -95,7 +95,6 @@ export const PersonForm = ({ cb }) => {
         flexDirection: "column",
         gap: "20px",
         width: "50vw",
-        justifyContent: "center",
         alignItems: "center",
       }}
     >

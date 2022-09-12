@@ -7,8 +7,6 @@ function Footer() {
         background: "#000000",
         height: "80px",
         width: "100%",
-        position: "fixed",
-        bottom: "0",
       }}
     >
       <div

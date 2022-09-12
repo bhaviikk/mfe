@@ -2,31 +2,42 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import { PersonForm } from "form/Form";
-import { View } from "details/Details";
-
 import "./index.css";
+import ErrorBoundary from "./components/ErrorBoundary";
+const PersonFormComp = React.lazy(() => import("./components/PersonForm"));
+const DetailView = React.lazy(() => import("./components/DetailView"));
 
 const App = () => {
-  const [count, setCount] = useState<number>(0);
   const [formData, setFormData] = useState({});
   const cb = (data) => {
     setFormData(data);
   };
   return (
-    <div className="container">
+    <div
+      className="container"
+      style={{ display: "flex", flexDirection: "column", height: "100vh" }}
+    >
       <Header />
       <div
         style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "flex-start",
-          justifyContent: "flex-start",
-          marginTop: "80px",
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))",
+          rowGap: "1rem",
+          padding: "2rem 4rem",
+          overflow: "auto",
+          flex: "1",
         }}
       >
-        <PersonForm count={count} cb={cb} />
-        <View data={formData} />
+        <ErrorBoundary>
+          <React.Suspense fallback="Loading">
+            <PersonFormComp cb={cb} />
+          </React.Suspense>
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <React.Suspense fallback="Loading">
+            <DetailView data={formData} />
+          </React.Suspense>
+        </ErrorBoundary>
       </div>
       <Footer />
     </div>
